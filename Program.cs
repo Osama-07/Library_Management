@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Library_Management.Books.Controls;
+using Library_Management.Home;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,6 +19,8 @@ namespace Library_Management
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmMainMenue());
+            //Application.Run(new frmHome(null));
+
         }
     }
 }

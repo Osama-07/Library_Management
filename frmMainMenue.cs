@@ -1,130 +1,236 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Drawing;
 using System.Windows.Forms;
+using Guna.UI2.WinForms;
+using Library_Management.Books;
+using Library_Management.Borrowing_Records;
+using Library_Management.Home;
+using Library_Management.Profile;
+using Library_Management.Properties;
+using Library_Management.Reservations;
+using Library_Management.Setting;
 using LibraryBusiness;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace Library_Management
 {
     public partial class frmMainMenue : Form
     {
+        public enum enImageTitle { Home = 1, Books = 2, Reservations = 3, BorrowingRecords = 4, Profile = 5, Settings = 6 }
+
+        struct stChildForms
+        {
+            // this forms for can be navigated without having to reload the page.
+            public frmHome frmHome { get; set; }
+            public frmBooks frmBooks { get; set; }
+            public frmReservations frmReservations { get; set; }
+            public frmBorrowingRecords frmBorrowingRecords { get; set; }
+            public frmProfile frmProfile { get; set; }
+            public frmSetting frmSetting { get; set; }
+        }
+        private stChildForms Forms = new stChildForms();
+
         public frmMainMenue()
         {
             InitializeComponent();
+
+            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private Form activeForm;
+        private Form activeSubForm;
+
+        public string TitlePage
         {
-            int BookID;
-
-            if (int.TryParse(txtID.Text, out int ID))
-                BookID = ID;
-            else
-                return;
-
-            //clsBookCopies copies = new clsBookCopies();
-
-            //copies.Book_ID = BookID;
-            //copies.AvailabilityStatus = true;
-            clsBooks Book = new clsBooks();
-
-            Book.Title = txtTitle.Text;
-            Book.Author = txtAuthor.Text;
-            Book.ISBN = Convert.ToInt32(txtISBN.Text);
-            Book.Publication_Date = dtpPublication_Date.Value;
-            Book.Gener = txtGener.Text;
-            Book.AdditinalDetails = txtAdditinalDetailse.Text;
-
-            if (Book.Save())
+            get
             {
-                MessageBox.Show($"Added Successfully with ID = {Book.Book_ID}.", "Succeeded",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return lblTitle.Text;
+            }
+            set
+            {
+                lblTitle.Text = value;
+            }
+        }
+
+        private void ImageTitle(enImageTitle imageTitle)
+        {
+            switch (imageTitle)
+            {
+                case enImageTitle.Home:
+                    pbImageTitle.Image = Resources.Home;
+                    break;
+                case enImageTitle.Books:
+                    pbImageTitle.Image = Resources.books__1_;
+                    break;
+                case enImageTitle.Reservations:
+                    pbImageTitle.Image = Resources.reservations;
+                    break;
+                case enImageTitle.BorrowingRecords:
+                    pbImageTitle.Image = Resources.Borrowing;
+                    break;
+                case enImageTitle.Profile:
+                    pbImageTitle.Image = Resources.user;
+                    break;
+                case enImageTitle.Settings:
+                    pbImageTitle.Image = Resources.settings;
+                    break;
+                default:
+                    pbImageTitle.Image = Resources.Home;
+                    break;
+            }
+        }
+
+        public void OpenChailedForm(Form ChildForm, enImageTitle imageTitle)
+        {
+            try
+            {
+                if (activeForm != null)
+                {
+                    activeForm.Hide();
+
+                    if (activeSubForm != null)
+                        activeSubForm.Close();
+                }
+
+                //ChangeThameColor(ThameColor);
+                activeForm = ChildForm;
+                ChildForm.TopLevel = false;
+                ChildForm.FormBorderStyle = FormBorderStyle.None;
+                ChildForm.Dock = DockStyle.Fill;
+                this.panelForms.Controls.Add(ChildForm);
+                this.panelForms.Tag = ChildForm;
+                ChildForm.BringToFront();
+                ChildForm.Show();
+                lblTitle.Text = ChildForm.Text;
+                ImageTitle(imageTitle);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        public void OpenChildSubForm(Form ChildSubForm)
+        {
+            try
+            {
+                if (activeSubForm != null)
+                {
+                    activeSubForm.Close();
+                }
+
+                //ChangeThameColor(ThameColor);
+                activeSubForm = ChildSubForm;
+                ChildSubForm.TopLevel = false;
+                ChildSubForm.FormBorderStyle = FormBorderStyle.None;
+                ChildSubForm.Dock = DockStyle.Fill;
+                this.panelForms.Controls.Add(ChildSubForm);
+                this.panelForms.Tag = ChildSubForm;
+                ChildSubForm.BringToFront();
+                ChildSubForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void frmMainMenue_Load(object sender, EventArgs e)
+        {
+            btnHome.PerformClick();
+        }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            if (Forms.frmHome != null)
+            {
+                OpenChailedForm(Forms.frmHome, enImageTitle.Home);
             }
             else
-                MessageBox.Show("Fuck ur self.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {
+                Forms.frmHome = new frmHome(this);
+
+                OpenChailedForm(Forms.frmHome, enImageTitle.Home);
+            }
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private void btnBooks_Click(object sender, EventArgs e)
         {
-            int BookID;
-
-            if (int.TryParse(txtID.Text, out int ID))
-                BookID = ID;
-            else
-                return;
-
-            clsBooks Book = clsBooks.FindByBook_ID(BookID);
-
-            Book.Title = txtTitle.Text;
-            Book.Author = txtAuthor.Text;
-            Book.ISBN = Convert.ToInt32(txtISBN.Text);
-            Book.Publication_Date = dtpPublication_Date.Value;
-            Book.Gener = txtGener.Text;
-            Book.AdditinalDetails = txtAdditinalDetailse.Text;
-
-            if (Book.Save())
+            if (Forms.frmBooks != null)
             {
-                MessageBox.Show($"Updated Successfully with ID = {Book.Book_ID}.", "Succeeded",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                OpenChailedForm(Forms.frmBooks, enImageTitle.Books);
             }
             else
-                MessageBox.Show("Fuck ur self.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            { 
+                Forms.frmBooks = new frmBooks(this);
+                
+                OpenChailedForm(Forms.frmBooks, enImageTitle.Books);
+            }
         }
 
-        private void btnFind_Click(object sender, EventArgs e)
+        private void btnReservations_Click(object sender, EventArgs e)
         {
-            int BookID;
-
-            if (int.TryParse(txtID.Text, out int ID))
-                BookID = ID;
-            else
-                return;
-            
-            clsBooks Book = clsBooks.FindByBook_ID(BookID);
-
-            if (Book != null)
+            if (Forms.frmReservations != null)
             {
-                MessageBox.Show($"BookID: {Book.Book_ID}\n\nTitle: {Book.Title}\n\nAuthor: {Book.Author}\n\nISBN: {Book.ISBN}\n\nPublication_Date: {Book.Publication_Date}\n\nGener: {Book.Gener}\n\nAdditinalDetails: {Book.AdditinalDetails}", "Finded",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                OpenChailedForm(Forms.frmReservations, enImageTitle.Reservations);
             }
             else
-                MessageBox.Show("Fuck ur self.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {
+                Forms.frmReservations = new frmReservations(this);
+
+                OpenChailedForm(Forms.frmReservations, enImageTitle.Reservations);
+            }
         }
 
-        private void btnIsExists_Click(object sender, EventArgs e)
+        private void btnBorrowingRecords_Click(object sender, EventArgs e)
         {
-            int BookID;
-
-            if (int.TryParse(txtID.Text, out int ID))
-                BookID = ID;
-            else
-                return;
-
-            if (clsBooks.IsExist(BookID))
+            if (Forms.frmBorrowingRecords != null)
             {
-                MessageBox.Show($"Book with ID {BookID} is Exists", "Exists",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                OpenChailedForm(Forms.frmBorrowingRecords, enImageTitle.BorrowingRecords);
             }
             else
-                MessageBox.Show("Fuck ur self.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {
+                Forms.frmBorrowingRecords = new frmBorrowingRecords(this);
+
+                OpenChailedForm(Forms.frmBorrowingRecords, enImageTitle.BorrowingRecords);
+            }
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void btnProfile_Click(object sender, EventArgs e)
         {
-            int BookID;
-
-            if (int.TryParse(txtID.Text, out int ID))
-                BookID = ID;
-            else
-                return;
-
-            if (clsBooks.Delete(BookID))
+            if (Forms.frmProfile != null)
             {
-                MessageBox.Show($"Deleted Book with ID {BookID} Successfully", "Succeeded",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                OpenChailedForm(Forms.frmProfile, enImageTitle.Profile);
             }
             else
-                MessageBox.Show("Fuck ur self.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {
+                Forms.frmProfile = new frmProfile(this);
+
+                OpenChailedForm(Forms.frmProfile, enImageTitle.Profile);
+            }
         }
+
+        private void btnSetting_Click(object sender, EventArgs e)
+        {
+            if (Forms.frmSetting != null)
+            {
+                OpenChailedForm(Forms.frmSetting, enImageTitle.Settings);
+            }
+            else
+            {
+                Forms.frmSetting = new frmSetting(this);
+
+                OpenChailedForm(Forms.frmSetting, enImageTitle.Settings);
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }
