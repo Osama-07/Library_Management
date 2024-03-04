@@ -98,11 +98,29 @@
     <Compile Include="Books\frmChooseBook.Designer.cs">
       <DependentUpon>frmChooseBook.cs</DependentUpon>
     </Compile>
+    <Compile Include="Borrowing Records\frmBorrowABook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Borrowing Records\frmBorrowABook.Designer.cs">
+      <DependentUpon>frmBorrowABook.cs</DependentUpon>
+    </Compile>
     <Compile Include="Borrowing Records\frmBorrowingRecords.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Borrowing Records\frmBorrowingRecords.Designer.cs">
       <DependentUpon>frmBorrowingRecords.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Borrowing Records\frmChooseBookForReturn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Borrowing Records\frmChooseBookForReturn.Designer.cs">
+      <DependentUpon>frmChooseBookForReturn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Borrowing Records\frmReturnTheBook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Borrowing Records\frmReturnTheBook.Designer.cs">
+      <DependentUpon>frmReturnTheBook.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMainMenue.cs">
       <SubType>Form</SubType>
@@ -166,8 +184,17 @@
     <EmbeddedResource Include="Books\frmChooseBook.resx">
       <DependentUpon>frmChooseBook.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Borrowing Records\frmBorrowABook.resx">
+      <DependentUpon>frmBorrowABook.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Borrowing Records\frmBorrowingRecords.resx">
       <DependentUpon>frmBorrowingRecords.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Borrowing Records\frmChooseBookForReturn.resx">
+      <DependentUpon>frmChooseBookForReturn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Borrowing Records\frmReturnTheBook.resx">
+      <DependentUpon>frmReturnTheBook.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMainMenue.resx">
       <DependentUpon>frmMainMenue.cs</DependentUpon>

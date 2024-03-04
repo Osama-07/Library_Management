@@ -1,15 +1,23 @@
 ﻿using LibraryBusiness;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
+using Util;
 
 namespace Library_Management.Global
 {
     public class clsGlobal
     {
-        public static clsUsers CurrentUser { get; set; }
+        private static string _SourceName = Assembly.GetExecutingAssembly().GetName().Name;
+        private static string _Location = Assembly.GetExecutingAssembly().Location; // 
+        private static string _DestinationFolder = @"G:\Library_Management_Images\"; // folder for save books images.
 
+        public static clsUsers CurrentUser 
+        { 
+            get
+            {
+                return clsUsers.FindByUser_ID(2);
+            }
+        }
+
+        public clsUtil Util = new clsUtil(_SourceName, _Location, _DestinationFolder);
     }
 }

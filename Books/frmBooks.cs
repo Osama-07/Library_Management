@@ -98,5 +98,9 @@ namespace Library_Management.Books
             }
         }
 
+        private void ctrlShowBooksCatalogeWithFilter1_OnBtnBookClick(object sender, Controls.ctrlShowBooksCatalogeWithFilter.BtnBookClick e)
+        {
+            MessageBox.Show("Here Books form.", "Books", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

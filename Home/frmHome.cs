@@ -23,5 +23,11 @@ namespace Library_Management.Home
         {
             frmHome_Shown(null, null);
         }
+
+        private void ctrlShowBooksCatalogeWithFilter1_OnBtnBookClick(object sender, Books.Controls.ctrlShowBooksCatalogeWithFilter.BtnBookClick e)
+        {
+            MessageBox.Show("Here Home Form.", "Home", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
     }
 }

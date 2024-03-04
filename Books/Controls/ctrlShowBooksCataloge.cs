@@ -1,7 +1,9 @@
 ﻿using Guna.UI2.WinForms;
 using LibraryBusiness;
+using System;
 using System.Data;
 using System.Drawing;
+using System.Net;
 using System.Windows.Forms;
 using Util;
 
@@ -25,6 +27,35 @@ namespace Library_Management.Books.Controls
             InitializeComponent();
         }
 
+        public class BtnBookClick
+        {
+            public int BookID { get; set; }
+            public clsBooks BookInfo
+            {
+                get
+                {
+                    return clsBooks.FindByBook_ID(BookID);
+                }
+            }
+
+            public BtnBookClick(int bookID)
+            {
+                this.BookID = bookID;
+            }
+        }
+
+        public event EventHandler<BtnBookClick> OnBtnBookClick;
+
+        private void RaiseOnBtnBookClick(int BookID)
+        {
+            RaiseOnBtnBookClick(new BtnBookClick(BookID));
+        }
+
+        protected void RaiseOnBtnBookClick(BtnBookClick e)
+        {
+            OnBtnBookClick?.Invoke(this, e);
+        }
+
         public void Reset()
         {
             dtBookControls = clsBookControls.GetAllBookControls();
@@ -36,7 +67,7 @@ namespace Library_Management.Books.Controls
                 Guna2TileButton bookButton = new Guna2TileButton();
 
                 ButtonStyle(ref bookButton, row);
-                bookButton.Click += (s, sv) => MessageBox.Show($"this BookID {bookButton.Tag}.", $"{bookButton.Text}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                bookButton.Click += (s, sv) => RaiseOnBtnBookClick(Convert.ToInt32(bookButton.Tag)); // stored book id in btn tag.
 
                 panelBooks.Controls.Add(bookButton);
                 AdjustButtonPositions();

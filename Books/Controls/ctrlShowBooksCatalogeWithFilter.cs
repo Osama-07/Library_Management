@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraryBusiness;
+using System;
 using System.Windows.Forms;
 
 namespace Library_Management.Books.Controls
@@ -8,6 +9,35 @@ namespace Library_Management.Books.Controls
         public ctrlShowBooksCatalogeWithFilter()
         {
             InitializeComponent();
+        }
+
+        public class BtnBookClick
+        {
+            public int BookID { get; set; }
+            public clsBooks BookInfo
+            {
+                get
+                {
+                    return clsBooks.FindByBook_ID(BookID);
+                }
+            }
+
+            public BtnBookClick(int bookID)
+            {
+                this.BookID = bookID;
+            }
+        }
+
+        public event EventHandler<BtnBookClick> OnBtnBookClick;
+
+        private void RaiseOnBtnBookClick(int BookID)
+        {
+            RaiseOnBtnBookClick(new BtnBookClick(BookID));
+        }
+
+        protected void RaiseOnBtnBookClick(BtnBookClick e)
+        {
+            OnBtnBookClick?.Invoke(this, e);
         }
 
         public int CountControls
@@ -126,6 +156,12 @@ namespace Library_Management.Books.Controls
                 btnSearch.PerformClick();
             }
         }
+
+        private void ctrlShowBooksCataloge1_OnBtnBookClick(object sender, ctrlShowBooksCataloge.BtnBookClick e)
+        {
+            RaiseOnBtnBookClick(e.BookID);
+        }
+
 
     }
 }

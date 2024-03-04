@@ -154,6 +154,7 @@
             this.ctrlShowBooksCataloge1.Name = "ctrlShowBooksCataloge1";
             this.ctrlShowBooksCataloge1.Size = new System.Drawing.Size(1150, 576);
             this.ctrlShowBooksCataloge1.TabIndex = 11;
+            this.ctrlShowBooksCataloge1.OnBtnBookClick += new System.EventHandler<Library_Management.Books.Controls.ctrlShowBooksCataloge.BtnBookClick>(this.ctrlShowBooksCataloge1_OnBtnBookClick);
             // 
             // ctrlShowBooksCatalogeWithFilter
             // 

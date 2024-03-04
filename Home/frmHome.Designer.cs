@@ -40,6 +40,7 @@ namespace Library_Management.Home
             this.ctrlShowBooksCatalogeWithFilter1.Name = "ctrlShowBooksCatalogeWithFilter1";
             this.ctrlShowBooksCatalogeWithFilter1.Size = new System.Drawing.Size(1150, 656);
             this.ctrlShowBooksCatalogeWithFilter1.TabIndex = 76;
+            this.ctrlShowBooksCatalogeWithFilter1.OnBtnBookClick += new System.EventHandler<Library_Management.Books.Controls.ctrlShowBooksCatalogeWithFilter.BtnBookClick>(this.ctrlShowBooksCatalogeWithFilter1_OnBtnBookClick);
             // 
             // frmHome
             // 
