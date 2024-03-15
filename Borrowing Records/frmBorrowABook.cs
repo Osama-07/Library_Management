@@ -31,8 +31,9 @@ namespace Library_Management.Borrowing_Records
         {
             txtBookID.Text = _BookID.ToString();
             txtCopyID.Text = _CopyID.ToString();
-            txtUserID.Text = clsGlobal.CurrentUser.User_ID.ToString();
             txtUserID.Focus();
+            dtpBorrowing_Date.Value = DateTime.Now;
+            dtpDueDate.Value = DateTime.Now.AddDays(1);
         }
 
         private bool _CheckUserID()
@@ -77,7 +78,7 @@ namespace Library_Management.Borrowing_Records
         {
             if (!_CheckUserID())
             {
-                MessageBox.Show($"this user ID is not found.", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show($"this user ID is not found.\n\nGo to add user.", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
 

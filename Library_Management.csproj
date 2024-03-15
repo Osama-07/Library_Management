@@ -154,6 +154,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Reservations\frmCancelReservation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reservations\frmCancelReservation.Designer.cs">
+      <DependentUpon>frmCancelReservation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reservations\frmCompleteReservation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reservations\frmCompleteReservation.Designer.cs">
+      <DependentUpon>frmCompleteReservation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reservations\frmReservations.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,6 +224,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reservations\frmCancelReservation.resx">
+      <DependentUpon>frmCancelReservation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reservations\frmCompleteReservation.resx">
+      <DependentUpon>frmCompleteReservation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reservations\frmReservations.resx">
       <DependentUpon>frmReservations.cs</DependentUpon>

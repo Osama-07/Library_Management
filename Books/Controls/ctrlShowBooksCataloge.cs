@@ -50,11 +50,11 @@ namespace Library_Management.Books.Controls
         {
             RaiseOnBtnBookClick(new BtnBookClick(BookID));
         }
-
         protected void RaiseOnBtnBookClick(BtnBookClick e)
         {
             OnBtnBookClick?.Invoke(this, e);
         }
+
 
         public void Reset()
         {

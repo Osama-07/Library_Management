@@ -74,13 +74,20 @@ namespace Library_Management.Borrowing_Records
 
         private void btnRe_Book_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure do you want return this book?", "Verifying", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-                == DialogResult.Yes)
+            int User_ID = Convert.ToInt32(txtUserID.Text);
+
+            if (clsUsers.IsExist(User_ID))
             {
-                if (_ReturnTheBook())
-                    MessageBox.Show("The book was returned successfully.", "Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (MessageBox.Show("Are you sure do you want return this book?", "Verifying", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                    == DialogResult.Yes)
+                {
+                    if (_ReturnTheBook())
+                        MessageBox.Show("The book was returned successfully.", "Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-                
+            else
+                MessageBox.Show($"User With ID {User_ID} is Not Exists.\n\nGo To Add User.", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
             btnBack.PerformClick();
         }
 

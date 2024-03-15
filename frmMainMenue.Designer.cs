@@ -162,6 +162,7 @@
             this.btnProfile.FillColor = System.Drawing.Color.Transparent;
             this.btnProfile.Font = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnProfile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnProfile.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnProfile.HoverState.Parent = this.btnProfile;
             this.btnProfile.Image = ((System.Drawing.Image)(resources.GetObject("btnProfile.Image")));
             this.btnProfile.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -187,6 +188,7 @@
             this.btnBorrowingRecords.FillColor = System.Drawing.Color.Transparent;
             this.btnBorrowingRecords.Font = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBorrowingRecords.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnBorrowingRecords.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnBorrowingRecords.HoverState.Parent = this.btnBorrowingRecords;
             this.btnBorrowingRecords.Image = ((System.Drawing.Image)(resources.GetObject("btnBorrowingRecords.Image")));
             this.btnBorrowingRecords.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -212,6 +214,7 @@
             this.btnSetting.FillColor = System.Drawing.Color.Transparent;
             this.btnSetting.Font = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSetting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnSetting.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnSetting.HoverState.Parent = this.btnSetting;
             this.btnSetting.Image = ((System.Drawing.Image)(resources.GetObject("btnSetting.Image")));
             this.btnSetting.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -237,6 +240,7 @@
             this.btnClose.FillColor = System.Drawing.Color.Transparent;
             this.btnClose.Font = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnClose.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnClose.HoverState.Parent = this.btnClose;
             this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
             this.btnClose.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -262,6 +266,7 @@
             this.btnReservations.FillColor = System.Drawing.Color.Transparent;
             this.btnReservations.Font = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReservations.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnReservations.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnReservations.HoverState.Parent = this.btnReservations;
             this.btnReservations.Image = ((System.Drawing.Image)(resources.GetObject("btnReservations.Image")));
             this.btnReservations.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -287,6 +292,7 @@
             this.btnBooks.FillColor = System.Drawing.Color.Transparent;
             this.btnBooks.Font = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBooks.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnBooks.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnBooks.HoverState.Parent = this.btnBooks;
             this.btnBooks.Image = ((System.Drawing.Image)(resources.GetObject("btnBooks.Image")));
             this.btnBooks.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -312,6 +318,7 @@
             this.btnHome.FillColor = System.Drawing.Color.Transparent;
             this.btnHome.Font = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnHome.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnHome.HoverState.Parent = this.btnHome;
             this.btnHome.Image = ((System.Drawing.Image)(resources.GetObject("btnHome.Image")));
             this.btnHome.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;

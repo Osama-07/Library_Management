@@ -34,3 +34,5 @@ C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management
 C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.Borrowing_Records.frmBorrowABook.resources
 C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.Borrowing_Records.frmReturnTheBook.resources
 C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.Borrowing_Records.frmChooseBookForReturn.resources
+C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.Reservations.frmCompleteReservation.resources
+C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.Reservations.frmCancelReservation.resources
