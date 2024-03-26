@@ -1,23 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
-using Guna.UI2.WinForms;
 using Library_Management.Books;
 using Library_Management.Borrowing_Records;
+using Library_Management.Fines;
 using Library_Management.Home;
 using Library_Management.Profile;
 using Library_Management.Properties;
 using Library_Management.Reservations;
 using Library_Management.Setting;
 using LibraryBusiness;
-using Microsoft.VisualBasic.ApplicationServices;
 
 namespace Library_Management
 {
     public partial class frmMainMenue : Form
     {
-        public enum enImageTitle { Home = 1, Books = 2, Reservations = 3, BorrowingRecords = 4, Profile = 5, Settings = 6 }
+        public enum enImageTitle { Home = 1, Books = 2, Reservations = 3, BorrowingRecords = 4, Users = 5, Fines = 6, Settings = 7 }
 
         struct stChildForms
         {
@@ -26,8 +23,9 @@ namespace Library_Management
             public frmBooks frmBooks { get; set; }
             public frmReservations frmReservations { get; set; }
             public frmBorrowingRecords frmBorrowingRecords { get; set; }
-            public frmUsers frmProfile { get; set; }
+            public frmUsers frmUsers { get; set; }
             public frmSetting frmSetting { get; set; }
+            public frmFines frmFines { get; set; }
         }
         private stChildForms Forms = new stChildForms();
 
@@ -69,8 +67,11 @@ namespace Library_Management
                 case enImageTitle.BorrowingRecords:
                     pbImageTitle.Image = Resources.Borrowing;
                     break;
-                case enImageTitle.Profile:
+                case enImageTitle.Users:
                     pbImageTitle.Image = Resources.user;
+                    break;
+                case enImageTitle.Fines:
+                    pbImageTitle.Image = Resources.Fines;
                     break;
                 case enImageTitle.Settings:
                     pbImageTitle.Image = Resources.settings;
@@ -199,17 +200,31 @@ namespace Library_Management
             }
         }
 
-        private void btnProfile_Click(object sender, EventArgs e)
+        private void btnUsers_Click(object sender, EventArgs e)
         {
-            if (Forms.frmProfile != null)
+            if (Forms.frmUsers != null)
             {
-                OpenChailedForm(Forms.frmProfile, enImageTitle.Profile);
+                OpenChailedForm(Forms.frmUsers, enImageTitle.Users);
             }
             else
             {
-                Forms.frmProfile = new frmUsers(this);
+                Forms.frmUsers = new frmUsers(this);
 
-                OpenChailedForm(Forms.frmProfile, enImageTitle.Profile);
+                OpenChailedForm(Forms.frmUsers, enImageTitle.Users);
+            }
+        }
+
+        private void btnFines_Click(object sender, EventArgs e)
+        {
+            if (Forms.frmFines != null)
+            {
+                OpenChailedForm(Forms.frmFines, enImageTitle.Fines);
+            }
+            else
+            {
+                Forms.frmFines = new frmFines(this);
+
+                OpenChailedForm(Forms.frmFines, enImageTitle.Fines);
             }
         }
 

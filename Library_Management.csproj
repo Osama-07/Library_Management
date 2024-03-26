@@ -122,6 +122,12 @@
     <Compile Include="Borrowing Records\frmReturnTheBook.Designer.cs">
       <DependentUpon>frmReturnTheBook.cs</DependentUpon>
     </Compile>
+    <Compile Include="Fines\frmFines.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fines\frmFines.Designer.cs">
+      <DependentUpon>frmFines.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMainMenue.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -227,6 +233,9 @@
     <EmbeddedResource Include="Borrowing Records\frmReturnTheBook.resx">
       <DependentUpon>frmReturnTheBook.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Fines\frmFines.resx">
+      <DependentUpon>frmFines.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMainMenue.resx">
       <DependentUpon>frmMainMenue.cs</DependentUpon>
     </EmbeddedResource>
@@ -287,6 +296,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="book-alt.ico" />
+    <None Include="Resources\Fines.png" />
     <None Include="Resources\No_Book.png" />
     <None Include="Resources\Edit Book.png" />
     <None Include="Resources\Add Book.png" />
