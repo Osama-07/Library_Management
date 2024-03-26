@@ -88,10 +88,18 @@ namespace Library_Management.Reservations
         {
             if (int.TryParse(txtUserID.Text, out int User_ID))
             {
-                if (clsReservations.IsUserHasNewReservation(User_ID))
+                if (clsUsers.IsExist(User_ID))
                 {
-                    MessageBox.Show("You already have Reservation.", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    btnBack.PerformClick();
+                    if (clsReservations.IsUserHasNewReservation(User_ID))
+                    {
+                        MessageBox.Show("You already have Reservation.", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        btnBack.PerformClick();
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show($"User with ID {User_ID} is not exists.", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     return;
                 }
             }

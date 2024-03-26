@@ -35,7 +35,7 @@
             this.lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2CustomGradientPanel2 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
-            this.btnProfile = new Guna.UI2.WinForms.Guna2Button();
+            this.btnUsers = new Guna.UI2.WinForms.Guna2Button();
             this.btnBorrowingRecords = new Guna.UI2.WinForms.Guna2Button();
             this.btnSetting = new Guna.UI2.WinForms.Guna2Button();
             this.btnClose = new Guna.UI2.WinForms.Guna2Button();
@@ -130,7 +130,7 @@
             // 
             // guna2CustomGradientPanel2
             // 
-            this.guna2CustomGradientPanel2.Controls.Add(this.btnProfile);
+            this.guna2CustomGradientPanel2.Controls.Add(this.btnUsers);
             this.guna2CustomGradientPanel2.Controls.Add(this.btnBorrowingRecords);
             this.guna2CustomGradientPanel2.Controls.Add(this.btnSetting);
             this.guna2CustomGradientPanel2.Controls.Add(this.btnClose);
@@ -149,31 +149,31 @@
             this.guna2CustomGradientPanel2.Size = new System.Drawing.Size(220, 531);
             this.guna2CustomGradientPanel2.TabIndex = 65;
             // 
-            // btnProfile
+            // btnUsers
             // 
-            this.btnProfile.Animated = true;
-            this.btnProfile.AutoRoundedCorners = true;
-            this.btnProfile.BackColor = System.Drawing.Color.Transparent;
-            this.btnProfile.BorderRadius = 24;
-            this.btnProfile.CheckedState.Parent = this.btnProfile;
-            this.btnProfile.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnProfile.CustomImages.Parent = this.btnProfile;
-            this.btnProfile.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnProfile.FillColor = System.Drawing.Color.Transparent;
-            this.btnProfile.Font = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProfile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnProfile.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnProfile.HoverState.Parent = this.btnProfile;
-            this.btnProfile.Image = ((System.Drawing.Image)(resources.GetObject("btnProfile.Image")));
-            this.btnProfile.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnProfile.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnProfile.Location = new System.Drawing.Point(0, 314);
-            this.btnProfile.Name = "btnProfile";
-            this.btnProfile.ShadowDecoration.Parent = this.btnProfile;
-            this.btnProfile.Size = new System.Drawing.Size(220, 51);
-            this.btnProfile.TabIndex = 76;
-            this.btnProfile.Text = "Profile";
-            this.btnProfile.Click += new System.EventHandler(this.btnProfile_Click);
+            this.btnUsers.Animated = true;
+            this.btnUsers.AutoRoundedCorners = true;
+            this.btnUsers.BackColor = System.Drawing.Color.Transparent;
+            this.btnUsers.BorderRadius = 24;
+            this.btnUsers.CheckedState.Parent = this.btnUsers;
+            this.btnUsers.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUsers.CustomImages.Parent = this.btnUsers;
+            this.btnUsers.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnUsers.FillColor = System.Drawing.Color.Transparent;
+            this.btnUsers.Font = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUsers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnUsers.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnUsers.HoverState.Parent = this.btnUsers;
+            this.btnUsers.Image = ((System.Drawing.Image)(resources.GetObject("btnUsers.Image")));
+            this.btnUsers.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnUsers.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnUsers.Location = new System.Drawing.Point(0, 314);
+            this.btnUsers.Name = "btnUsers";
+            this.btnUsers.ShadowDecoration.Parent = this.btnUsers;
+            this.btnUsers.Size = new System.Drawing.Size(220, 51);
+            this.btnUsers.TabIndex = 76;
+            this.btnUsers.Text = "Users";
+            this.btnUsers.Click += new System.EventHandler(this.btnProfile_Click);
             // 
             // btnBorrowingRecords
             // 
@@ -391,7 +391,7 @@
         private Guna.UI2.WinForms.Guna2Button btnReservations;
         private Guna.UI2.WinForms.Guna2Button btnBooks;
         private Guna.UI2.WinForms.Guna2Button btnSetting;
-        private Guna.UI2.WinForms.Guna2Button btnProfile;
+        private Guna.UI2.WinForms.Guna2Button btnUsers;
         private Guna.UI2.WinForms.Guna2Button btnBorrowingRecords;
         private Guna.UI2.WinForms.Guna2Panel panelForms;
         private Guna.UI2.WinForms.Guna2PictureBox pbImageTitle;

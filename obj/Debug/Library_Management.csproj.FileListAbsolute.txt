@@ -14,14 +14,12 @@ C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management
 C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.Properties.Resources.resources
 C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.csproj.GenerateResource.cache
 C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.csproj.CoreCompileInputs.cache
-C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.csproj.CopyComplete
 C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.exe
 C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.pdb
 C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.Home.frmHome.resources
 C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.Borrowing_Records.frmBorrowingRecords.resources
 C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.Reservations.frmReservations.resources
 C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.Setting.frmSetting.resources
-C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.Profile.frmProfile.resources
 C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\bin\Debug\ctrlLoginInfo.dll
 C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\bin\Debug\ctrlLoginInfo.pdb
 C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.Login.frmLogin.resources
@@ -36,3 +34,8 @@ C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management
 C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.Borrowing_Records.frmChooseBookForReturn.resources
 C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.Reservations.frmCompleteReservation.resources
 C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.Reservations.frmCancelReservation.resources
+C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.Profile.frmUsers.resources
+C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_.5B28E3FA.Up2Date
+C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.Users.frmAddEditUser.resources
+C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.Users.Controls.ctrlGetUserInfo.resources
+C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.Users.frmSelectUser.resources

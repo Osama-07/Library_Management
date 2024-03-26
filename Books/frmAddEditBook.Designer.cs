@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddEditBook));
+            LibraryBusiness.clsBooks clsBooks1 = new LibraryBusiness.clsBooks();
             this.pbAddEditImage = new Guna.UI2.WinForms.Guna2PictureBox();
             this.btnCancel = new Guna.UI2.WinForms.Guna2Button();
             this.btnBack = new Guna.UI2.WinForms.Guna2ImageButton();
@@ -109,6 +110,15 @@
             // 
             // ctrlAddEditBook1
             // 
+            this.ctrlAddEditBook1.BookID = 0;
+            clsBooks1.AdditinalDetails = null;
+            clsBooks1.Author = null;
+            clsBooks1.Book_ID = null;
+            clsBooks1.Gener = null;
+            clsBooks1.ISBN = 0;
+            clsBooks1.Publication_Date = new System.DateTime(((long)(0)));
+            clsBooks1.Title = null;
+            this.ctrlAddEditBook1.BookInfo = clsBooks1;
             this.ctrlAddEditBook1.Location = new System.Drawing.Point(218, 89);
             this.ctrlAddEditBook1.Name = "ctrlAddEditBook1";
             this.ctrlAddEditBook1.Size = new System.Drawing.Size(785, 508);

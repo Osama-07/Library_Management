@@ -68,6 +68,8 @@ namespace Library_Management.Reservations
                         == DialogResult.Yes)
                         {
                             CancelReservation(ID);
+                            this.Close();
+                            return;
                         }
                     }
                     else
@@ -77,7 +79,7 @@ namespace Library_Management.Reservations
                     MessageBox.Show($"Reservation with ID {txtReservationID.Text} is not found.", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
 
-            this.Close();
+            txtReservationID.Focus();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

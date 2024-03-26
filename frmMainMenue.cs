@@ -26,7 +26,7 @@ namespace Library_Management
             public frmBooks frmBooks { get; set; }
             public frmReservations frmReservations { get; set; }
             public frmBorrowingRecords frmBorrowingRecords { get; set; }
-            public frmProfile frmProfile { get; set; }
+            public frmUsers frmProfile { get; set; }
             public frmSetting frmSetting { get; set; }
         }
         private stChildForms Forms = new stChildForms();
@@ -207,7 +207,7 @@ namespace Library_Management
             }
             else
             {
-                Forms.frmProfile = new frmProfile(this);
+                Forms.frmProfile = new frmUsers(this);
 
                 OpenChailedForm(Forms.frmProfile, enImageTitle.Profile);
             }
