@@ -8,7 +8,7 @@ namespace Library_Management.Profile
 {
     public partial class frmUsers : Form
     {
-        private frmMainMenue _frmMainMenue;
+        public frmMainMenue frmMainMenue;
 
         private static DataTable _dtListUsers = new DataTable();
         private DataView _dvListUsers = new DataView(_dtListUsers);
@@ -17,7 +17,7 @@ namespace Library_Management.Profile
         {
             InitializeComponent();
 
-            _frmMainMenue = frmMainMenue;
+            this.frmMainMenue = frmMainMenue;
         }
 
         public void Referesh()
@@ -38,6 +38,8 @@ namespace Library_Management.Profile
 
             if (_dtListUsers.Rows.Count > 0)
             {
+                lblNothing.Visible = false;
+
                 dgvListUser.Columns[0].HeaderText = "User ID";
                 dgvListUser.Columns[0].Width = 40;
 
@@ -56,6 +58,8 @@ namespace Library_Management.Profile
                 dgvListUser.Columns[5].HeaderText = "Library Card Number";
                 dgvListUser.Columns[5].Width = 170;
             }
+            else
+                lblNothing.Visible = true;
 
         }
 
@@ -116,20 +120,24 @@ namespace Library_Management.Profile
             {
                 frmAddEditUser frm = new frmAddEditUser(this, UserID);
 
-                _frmMainMenue.OpenChildSubForm(frm);
+                frmMainMenue.OpenChildSubForm(frm);
             }
         }
 
-        private void frmProfile_Shown(object sender, EventArgs e)
+        private void frmUsers_Shown(object sender, EventArgs e)
         {
             _FillListUsers();
         }
 
         private void btnAddNew_Click(object sender, EventArgs e)
         {
-            frmAddEditUser frm = new frmAddEditUser(this);
+            /*frmAddEditUser frm = new frmAddEditUser(this);
 
-            _frmMainMenue.OpenChildSubForm(frm);
+            frmMainMenue.OpenChildSubForm(frm);*/
+
+            frmEmailVerification frm = new frmEmailVerification(this);
+
+            frmMainMenue.OpenChildSubForm(frm);
         }
 
         private void btnEditUser_Click(object sender, EventArgs e)

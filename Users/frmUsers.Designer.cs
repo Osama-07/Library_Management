@@ -334,6 +334,7 @@
             this.btnSearch.CheckedState.Parent = this.btnSearch;
             this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSearch.CustomImages.Parent = this.btnSearch;
+            this.btnSearch.Enabled = false;
             this.btnSearch.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnSearch.FillColor2 = System.Drawing.Color.Gray;
             this.btnSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -379,7 +380,7 @@
             this.Name = "frmUsers";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Users";
-            this.Shown += new System.EventHandler(this.frmProfile_Shown);
+            this.Shown += new System.EventHandler(this.frmUsers_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListUser)).EndInit();
             this.cmsSettingsUsers.ResumeLayout(false);
             this.ResumeLayout(false);

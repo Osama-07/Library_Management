@@ -3,6 +3,7 @@ using LibraryBusiness;
 using System;
 using System.Data;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Util;
 
@@ -12,25 +13,26 @@ namespace Library_Management.Borrowing_Records
     {
         private frmBorrowingRecords _frmBorrowingRecords;
 
-        private int _BookID {  get; set; }
+        private int _BookID { get; set; }
+        private int _UserID { get; set; }
         private static DataTable dtBorrowedBookInfo = new DataTable();
         private DataView dvBorrowedBookInfo = new DataView(dtBorrowedBookInfo);
 
-        public frmReturnTheBook(frmBorrowingRecords frmBorrowingRecords, int bookID)
+        public frmReturnTheBook(frmBorrowingRecords frmBorrowingRecords, int bookID, int userID)
         {
             InitializeComponent();
 
             _BookID = bookID;
+            _UserID = userID;
             _frmBorrowingRecords = frmBorrowingRecords;
         }
 
         private void _FillInTheBoxesWithInfo()
         {
-            int User_ID = clsGlobal.CurrentUser.User_ID?? 0;
 
-            if (clsUsers.IsExist(User_ID))
+            if (clsUsers.IsExist(_UserID))
             {
-                dtBorrowedBookInfo = clsBorrowingRecords.GetBorrowedBookInfo(_BookID, User_ID);
+                dtBorrowedBookInfo = clsBorrowingRecords.GetBorrowedBookInfo(_BookID, _UserID);
                 dvBorrowedBookInfo = dtBorrowedBookInfo.DefaultView;
 
                 foreach (DataRowView row in dvBorrowedBookInfo)
@@ -52,7 +54,7 @@ namespace Library_Management.Borrowing_Records
             }
         }
 
-        private bool _ReturnTheBook()
+        private Nullable<int> _ReturnTheBook()
         {
             int Copy_ID = Convert.ToInt32(txtCopyID.Text);
             int User_ID = Convert.ToInt32(txtUserID.Text);
@@ -72,21 +74,37 @@ namespace Library_Management.Borrowing_Records
             btnBack.PerformClick();
         }
 
-        private void btnRe_Book_Click(object sender, EventArgs e)
+        private async void btnRe_Book_Click(object sender, EventArgs e)
         {
-            int User_ID = Convert.ToInt32(txtUserID.Text);
-
-            if (clsUsers.IsExist(User_ID))
+            if (MessageBox.Show("Are you sure do you want return this book?", "Verifying", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                == DialogResult.Yes)
             {
-                if (MessageBox.Show("Are you sure do you want return this book?", "Verifying", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-                    == DialogResult.Yes)
+                btnRe_Book.Enabled = false;
+                btnCancel.Enabled = false;
+
+                int? fineID = _ReturnTheBook();
+                if (fineID == null || fineID == 0) // null or 0 means the user has no fines.
                 {
-                    if (_ReturnTheBook())
-                        MessageBox.Show("The book was returned successfully.", "Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    await Task.Run(() =>
+                    {
+                        clsGlobal.SendReturnConfirmationEmail(_UserID, _BookID);
+                    });
+
+                    MessageBox.Show("The book was returned successfully.", "Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    // Notifying the user of the fine.
+                    await Task.Run(() =>
+                    { 
+                        clsGlobal.SendFineEmail(_UserID, (int)fineID);
+                    });
+
+                    MessageBox.Show($"The user is late in returning the book, and a late fine is imposed on him with Fine ID {fineID}.\n\nGo to the fines screen to see the fine details.",
+                        "Warning", MessageBoxButtons.OK, MessageBoxIcon.None);
+                    MessageBox.Show("The book was returned successfully.", "Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            else
-                MessageBox.Show($"User With ID {User_ID} is Not Exists.\n\nGo To Add User.", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop);
 
             btnBack.PerformClick();
         }

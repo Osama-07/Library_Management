@@ -3,10 +3,10 @@ using System;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using System.Drawing;
-using System.Text.RegularExpressions;
 using Library_Management.Global;
 using LibraryBusiness;
 using Util;
+using System.Threading.Tasks;
 
 namespace Library_Management.Users
 {
@@ -27,12 +27,14 @@ namespace Library_Management.Users
             }
         }
 
-        public frmAddEditUser(frmUsers frmUsers)
+        public frmAddEditUser(frmUsers frmUsers, string Email)
         {
             InitializeComponent();
 
+            // this for add new.
             _frmUsers = frmUsers;
             _Mode = enMode.AddNew;
+            txtEmail.Text = Email;
             lblAddEditTitle.Text = "Add User";
         }
 
@@ -206,7 +208,7 @@ namespace Library_Management.Users
             this.Close();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private async void btnSave_Click(object sender, EventArgs e)
         {
             if (!_CheckBeforeSave())
             {
@@ -216,6 +218,13 @@ namespace Library_Management.Users
 
             if (_Save())
             {
+                await Task.Run(() => 
+                {
+                    if (_Mode == enMode.AddNew)
+                        clsGlobal.SendRegistrationConfirmationEmail(_UserID);
+                    else
+                        clsGlobal.SendProfileUpdateConfirmationEmail(_UserID);
+                });
                 btnBack.PerformClick();
             }
             else

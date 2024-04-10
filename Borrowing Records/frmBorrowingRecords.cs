@@ -1,8 +1,10 @@
 ﻿using Library_Management.Books;
 using Library_Management.Global;
 using Library_Management.Reservations;
+using Library_Management.Users;
 using LibraryBusiness;
 using System;
+using System.Data;
 using System.Windows.Forms;
 
 namespace Library_Management.Borrowing_Records
@@ -11,6 +13,9 @@ namespace Library_Management.Borrowing_Records
     {
         private frmMainMenue _frmMainMenue;
 
+        private static DataTable _dtBorrowingRecords = new DataTable();
+        private DataView _dvBorrowingRecords = new DataView(_dtBorrowingRecords);
+
         public frmBorrowingRecords(frmMainMenue frmMainMenue)
         {
             InitializeComponent();
@@ -18,38 +23,93 @@ namespace Library_Management.Borrowing_Records
             _frmMainMenue = frmMainMenue;
         }
 
-        private void frmBorrowingRecords_Shown(object sender, EventArgs e)
+        public void Referesh()
         {
-            ctrlShowBooksCatalogeWithFilter1.LoadBookControls();
+            _FillBorrowingRecordsInfo();
+            cbFilterBy.SelectedIndex = 0;
+            txtSearch.Visible = false;
+            txtSearch.Clear();
+            btnSearch.Enabled = false;
         }
 
-        private void ctrlShowBooksCatalogeWithFilter1_OnBtnBookClick(object sender, Books.Controls.ctrlShowBooksCatalogeWithFilter.BtnBookClick e)
+        private void _FillBorrowingRecordsInfo()
         {
-            MessageBox.Show("Here Borrowing Records Form.", "Borrowing Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
+            _dtBorrowingRecords = clsBorrowingRecords.GetAllBorrowingRecords();
+            _dvBorrowingRecords = _dtBorrowingRecords.DefaultView;
 
-        private void btnRe_Book_Click(object sender, EventArgs e)
-        {
-            if (clsBorrowingRecords.IsUserBorrower((int)clsGlobal.CurrentUser.User_ID))
+            dgvBorrowingRcords.DataSource = _dvBorrowingRecords;
+
+            if (dgvBorrowingRcords.Rows.Count > 0)
             {
-                frmChooseBookForReturn frm = new frmChooseBookForReturn();
+                lblNothing.Visible = false;
 
-                frm.OnChooseBook += OpenRe_BookPage;
+                dgvBorrowingRcords.Columns[0].HeaderText = "ID";
+                dgvBorrowingRcords.Columns[0].Width = 40;
 
-                frm.ShowDialog();
+                dgvBorrowingRcords.Columns[1].HeaderText = "Name";
+                dgvBorrowingRcords.Columns[1].Width = 150;
+
+                dgvBorrowingRcords.Columns[2].HeaderText = "Title";
+                dgvBorrowingRcords.Columns[2].Width = 150;
+
+                dgvBorrowingRcords.Columns[3].HeaderText = "Copy ID";
+                dgvBorrowingRcords.Columns[3].Width = 50;
+
+                dgvBorrowingRcords.Columns[4].HeaderText = "Borrowing Date";
+                dgvBorrowingRcords.Columns[4].Width = 80;
+
+                dgvBorrowingRcords.Columns[5].HeaderText = "Due Date";
+                dgvBorrowingRcords.Columns[5].Width = 80;
+                
+                dgvBorrowingRcords.Columns[6].HeaderText = "Metaphor Status";
+                dgvBorrowingRcords.Columns[6].Width = 140;
+
             }
             else
-                MessageBox.Show("You don't have borrowed books.", "Go to Borrow", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                lblNothing.Visible = true;
+
         }
 
-        private void OpenRe_BookPage(object sender, int BookID)
+        private void _FilterByNone()
         {
-            if (BookID > 0)
-            {
-                frmReturnTheBook frm = new frmReturnTheBook(this, BookID);
+            _dvBorrowingRecords.RowFilter = "1 = 1";
+            dgvBorrowingRcords.DataSource = _dvBorrowingRecords;
 
-                _frmMainMenue.OpenChildSubForm(frm);
+            // Message no users.
+            if (dgvBorrowingRcords.Rows.Count == 0)
+                lblNothing.Visible = true;
+            else
+                lblNothing.Visible = false;
+        }
+
+        private void _Search()
+        {
+
+            if (txtSearch.Text == null || txtSearch.Text == "" || cbFilterBy.Text == "None")
+            {
+                _FilterByNone();
+                return;
             }
+
+            if (cbFilterBy.Text == "Copy ID" && txtSearch.Text != "")
+            {
+                _dvBorrowingRecords.RowFilter = string.Format("[Copy_ID] = {0}", txtSearch.Text);
+                dgvBorrowingRcords.DataSource = _dvBorrowingRecords;
+            }
+            else
+                _dvBorrowingRecords.RowFilter = string.Format("[{0}] LIKE '{1}%'", cbFilterBy.Text, txtSearch.Text);
+
+            // Message no users.
+            if (dgvBorrowingRcords.Rows.Count == 0)
+                lblNothing.Visible = true;
+            else
+                lblNothing.Visible = false;
+
+        }
+
+        private void frmBorrowingRecords_Shown(object sender, EventArgs e)
+        {
+            Referesh();
         }
 
         private void btnBorrowBook_Click(object sender, EventArgs e)
@@ -85,5 +145,77 @@ namespace Library_Management.Borrowing_Records
             }
         }
 
+        private void btnRe_Book_Click(object sender, EventArgs e)
+        {
+            frmSelectUser frm = new frmSelectUser();
+
+            frm.OnChooseBook += OpenChooseBookForReturnPage;
+
+            frm.ShowDialog();
+        }
+
+        private void OpenChooseBookForReturnPage(object sender, int UserID)
+        {
+            if (clsBorrowingRecords.IsUserBorrower(UserID))
+            {
+                frmChooseBookForReturn frm = new frmChooseBookForReturn(UserID);
+
+                frm.OnChooseBook += OpenRe_BookPage;
+
+                frm.ShowDialog();
+            }
+            else
+                MessageBox.Show("You don't have borrowed books.", "Go to Borrow", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void OpenRe_BookPage(object sender, int BookID, int UserID)
+        {
+            if (BookID > 0)
+            {
+                frmReturnTheBook frm = new frmReturnTheBook(this, BookID, UserID);
+
+                _frmMainMenue.OpenChildSubForm(frm);
+            }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            btnSearch.PerformClick();
+            txtSearch.Focus();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            _Search();
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            Referesh();
+        }
+
+        private void cbFilterBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbFilterBy.Text != "None")
+            {
+                txtSearch.Visible = true;
+                btnSearch.Enabled = true;
+                txtSearch.Focus();
+            }
+            else
+            {
+                txtSearch.Visible = false;
+                btnSearch.Enabled = false;
+                _Search();
+            }
+        }
+
+        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cbFilterBy.Text == "Copy ID")
+            {
+                e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+            }
+        }
     }
 }

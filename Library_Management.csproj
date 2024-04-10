@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>book-alt.ico</ApplicationIcon>
+    <ApplicationIcon>Osama-logo-_500-x-500-بيكسل__1.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
@@ -45,6 +45,7 @@
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
@@ -160,6 +161,12 @@
     <Compile Include="Users\frmAddEditUser.Designer.cs">
       <DependentUpon>frmAddEditUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Users\frmEmailVerification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\frmEmailVerification.Designer.cs">
+      <DependentUpon>frmEmailVerification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Users\frmSelectUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -251,6 +258,9 @@
     <EmbeddedResource Include="Users\frmAddEditUser.resx">
       <DependentUpon>frmAddEditUser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Users\frmEmailVerification.resx">
+      <DependentUpon>frmEmailVerification.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Users\frmSelectUser.resx">
       <DependentUpon>frmSelectUser.cs</DependentUpon>
     </EmbeddedResource>
@@ -295,7 +305,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="book-alt.ico" />
+    <Content Include="Osama-logo-_500-x-500-بيكسل__1.ico" />
     <None Include="Resources\Fines.png" />
     <None Include="Resources\No_Book.png" />
     <None Include="Resources\Edit Book.png" />

@@ -2,6 +2,7 @@
 using LibraryBusiness;
 using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Library_Management.Borrowing_Records
@@ -38,13 +39,34 @@ namespace Library_Management.Borrowing_Records
 
         private bool _CheckUserID()
         {
-            if (clsUsers.IsExist(Convert.ToInt32(txtUserID.Text)))
+            int UserID = Convert.ToInt32(txtUserID.Text);
+
+            if (!string.IsNullOrEmpty(txtUserID.Text) && UserID > 1)
             {
-                return true;
+                if (clsUsers.IsExist(UserID))
+                {
+                    // check if user already borrower or not.
+                    if (!clsBorrowingRecords.IsUserBorrower(UserID))
+                        return true;
+                    else
+                    {
+                        MessageBox.Show("This user is already borrowed.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        return false;
+                    }
+                }
+                else
+                {
+                    // this user is not exists.
+                    txtUserID.BorderColor = Color.Red;
+                    MessageBox.Show($"this user ID is not found.\n\nGo to add user.", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return false;
+                }
             }
             else
             {
+                // if txtUserID is empty Or UserID = 1, this ID for admin cannot borrow with him.
                 txtUserID.BorderColor = Color.Red;
+                MessageBox.Show($"this user ID is not found.\n\nGo to add user.", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return false;
             }
         }
@@ -74,16 +96,24 @@ namespace Library_Management.Borrowing_Records
             _LoadBorrowingInfo();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private async void btnSave_Click(object sender, EventArgs e)
         {
             if (!_CheckUserID())
             {
-                MessageBox.Show($"this user ID is not found.\n\nGo to add user.", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                //MessageBox.Show($"this user ID is not found.\n\nGo to add user.", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
 
             if (_Save())
             {
+                btnSave.Enabled = false;
+                // Send borrow book has been complete email to user.
+                await Task.Run(() =>
+                {
+                    int UserID = Convert.ToInt32(txtUserID.Text);
+                    clsGlobal.SendBorrowConfirmationEmail(UserID, _BookID);
+                });
+
                 MessageBox.Show($"The book has been borrowed successfully.", "Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 btnBack.PerformClick();

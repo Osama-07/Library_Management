@@ -5,27 +5,29 @@ using System.Collections.Generic;
 using LibraryBusiness;
 using Library_Management.Global;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace Library_Management.Borrowing_Records
 {
     public partial class frmChooseBookForReturn : Form
     {
-        public frmChooseBookForReturn()
+        private int _UserID { get; set; }
+        public frmChooseBookForReturn(int userID)
         {
             InitializeComponent();
+
+            this._UserID = userID;
         }
 
         private Dictionary<int, string> BorrwedUserBooks = new Dictionary<int, string>();
 
-        public delegate void ChooseBook(object sender, int BookID);
+        public delegate void ChooseBook(object sender, int BookID, int UserID);
         public event ChooseBook OnChooseBook;
 
 
         private void _FillBooksInComboBox()
         {
-            int User_ID = (int)clsGlobal.CurrentUser.User_ID;
-
-            BorrwedUserBooks = clsBorrowingRecords.GetBorrowedUserBooks(User_ID);
+            BorrwedUserBooks = clsBorrowingRecords.GetBorrowedUserBooks(_UserID);
 
             foreach (var item in BorrwedUserBooks)
             {
@@ -37,6 +39,7 @@ namespace Library_Management.Borrowing_Records
             else
             {
                 MessageBox.Show("You don't have borrowed books.", "Go to borrow book", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                this.Close();
             }
 
         }
@@ -72,7 +75,7 @@ namespace Library_Management.Borrowing_Records
 
                 if (OnChooseBook != null && BookID > 0)
                 {
-                    OnChooseBook?.Invoke(this, BookID);
+                    OnChooseBook?.Invoke(this, BookID, _UserID);
                 }
             }
 

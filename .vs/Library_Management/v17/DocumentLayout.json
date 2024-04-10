@@ -3,12 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\TOSHIBA\\Desktop\\Osama Projects\\P2_Library Management\\Library_Management\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C69A707F-8F03-4F78-82A8-140727CE45CB}|Library_Management.csproj|c:\\users\\toshiba\\desktop\\osama projects\\p2_library management\\library_management\\frmmainmenue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C69A707F-8F03-4F78-82A8-140727CE45CB}|Library_Management.csproj|solutionrelative:frmmainmenue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C69A707F-8F03-4F78-82A8-140727CE45CB}|Library_Management.csproj|c:\\users\\toshiba\\desktop\\osama projects\\p2_library management\\library_management\\frmmainmenue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C69A707F-8F03-4F78-82A8-140727CE45CB}|Library_Management.csproj|solutionrelative:frmmainmenue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C69A707F-8F03-4F78-82A8-140727CE45CB}|Library_Management.csproj|c:\\users\\toshiba\\desktop\\osama projects\\p2_library management\\library_management\\setting\\frmsetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C69A707F-8F03-4F78-82A8-140727CE45CB}|Library_Management.csproj|solutionrelative:setting\\frmsetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -43,27 +39,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "frmMainMenue.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\Osama Projects\\P2_Library Management\\Library_Management\\frmMainMenue.cs",
-              "RelativeDocumentMoniker": "frmMainMenue.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\Osama Projects\\P2_Library Management\\Library_Management\\frmMainMenue.cs [Design]",
-              "RelativeToolTip": "frmMainMenue.cs [Design]",
+              "Title": "frmSetting.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\Osama Projects\\P2_Library Management\\Library_Management\\Setting\\frmSetting.cs",
+              "RelativeDocumentMoniker": "Setting\\frmSetting.cs",
+              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\Osama Projects\\P2_Library Management\\Library_Management\\Setting\\frmSetting.cs [Design]",
+              "RelativeToolTip": "Setting\\frmSetting.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-26T11:01:40.82Z",
+              "WhenOpened": "2024-04-08T19:27:32.194Z",
               "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "frmMainMenue.cs",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\Osama Projects\\P2_Library Management\\Library_Management\\frmMainMenue.cs",
-              "RelativeDocumentMoniker": "frmMainMenue.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\Osama Projects\\P2_Library Management\\Library_Management\\frmMainMenue.cs",
-              "RelativeToolTip": "frmMainMenue.cs",
-              "ViewState": "AQIAAK4AAAAAAAAAAAAqwPgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-26T10:49:24.138Z",
-              "EditorCaption": ""
             }
           ]
         },
