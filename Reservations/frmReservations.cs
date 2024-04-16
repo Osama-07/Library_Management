@@ -58,5 +58,12 @@ namespace Library_Management.Reservations
             frm.ShowDialog();
         }
 
+        private void frmReservations_VisibleChanged(object sender, EventArgs e)
+        {
+            if (!this.Visible)
+                ctrlShowBooksCatalogeWithFilter1.ClearControls();
+            else
+                ctrlShowBooksCatalogeWithFilter1.LoadBookControls();
+        }
     }
 }

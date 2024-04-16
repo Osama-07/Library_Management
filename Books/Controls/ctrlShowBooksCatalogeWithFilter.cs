@@ -50,7 +50,7 @@ namespace Library_Management.Books.Controls
 
         public void Reset()
         {
-            ctrlShowBooksCataloge1.Reset();
+            ctrlShowBooksCataloge1.Referesh();
             cmbFilter.SelectedIndex = 0;
             txtSearch.Clear();
         }
@@ -92,7 +92,7 @@ namespace Library_Management.Books.Controls
             {
                 case "All":
                     {
-                        ctrlShowBooksCataloge1.Reset();
+                        ctrlShowBooksCataloge1.Referesh();
                     }
                     break;
                 case "Book ID":
@@ -102,8 +102,6 @@ namespace Library_Management.Books.Controls
                             ctrlShowBooksCataloge1.dvBookControls.RowFilter = $"Book_ID = {ID}";
                             ctrlShowBooksCataloge1.LoadBookControls();
                         }
-                        else
-                            MessageBox.Show($"Book With ID {ID} is Not found.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Stop);
 
                     }
                     break;
@@ -124,7 +122,7 @@ namespace Library_Management.Books.Controls
 
         public void LoadBookControls()
         {
-            ctrlShowBooksCataloge1.Reset();
+            ctrlShowBooksCataloge1.Referesh();
             cmbFilter.SelectedIndex = 0;
         }
 
@@ -136,7 +134,12 @@ namespace Library_Management.Books.Controls
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            //_Search();
+            if (txtSearch.Text.Length == 0)
+            {
+                ctrlShowBooksCataloge1.Referesh();
+                return;
+            }
+            _Search();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -151,7 +154,10 @@ namespace Library_Management.Books.Controls
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(e.KeyChar == (char)Keys.Enter)
+            if (cmbFilter.Text == "Book ID")
+                e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+
+            if (e.KeyChar == (char)Keys.Enter)
             {
                 btnSearch.PerformClick();
             }
@@ -162,6 +168,10 @@ namespace Library_Management.Books.Controls
             RaiseOnBtnBookClick(e.BookID);
         }
 
+        public void ClearControls()
+        {
+            ctrlShowBooksCataloge1.ClearControls();
+        }
 
     }
 }

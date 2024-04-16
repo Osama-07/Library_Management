@@ -2,6 +2,7 @@
 using LibraryBusiness;
 using System;
 using System.Data;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -47,7 +48,7 @@ namespace Library_Management.Borrowing_Records
 
                     nupBorrowingDays.Value = (int)row["BorrowingDays"];
 
-                    pbBookImage.Image = clsUtil.ByteArrayToImage((byte[])row["Image"]);
+                    pbBookImage.ImageLocation = (string)row["Image"];
 
                 }
 

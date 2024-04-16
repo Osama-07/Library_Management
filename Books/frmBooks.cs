@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using LibraryBusiness;
 
@@ -6,17 +7,17 @@ namespace Library_Management.Books
 {
     public partial class frmBooks : Form
     {
-        private frmMainMenue _frmMainMenue;
+        public frmMainMenue frmMainMenue;
 
         public string TitlePage
         {
             get
             {
-                return _frmMainMenue.TitlePage;
+                return frmMainMenue.TitlePage;
             }
             set
             {
-                _frmMainMenue.TitlePage = value;
+                frmMainMenue.TitlePage = value;
             }
         }
 
@@ -24,7 +25,7 @@ namespace Library_Management.Books
         {
             InitializeComponent();
 
-            _frmMainMenue = frmMainMenue;
+            this.frmMainMenue = frmMainMenue;
         }
 
         public void Referesh()
@@ -36,7 +37,7 @@ namespace Library_Management.Books
         {
             frmAddEditBook frm = new frmAddEditBook(this);
 
-            _frmMainMenue.OpenChildSubForm(frm);
+            frmMainMenue.OpenChildSubForm(frm);
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -57,7 +58,9 @@ namespace Library_Management.Books
         {
             frmAddEditBook frm = new frmAddEditBook(this, BookID);
 
-            _frmMainMenue.OpenChildSubForm(frm);
+            
+            frmMainMenue.OpenChildSubForm(frm);
+            this.Hide();
         }
 
         private void frmBooks_Shown(object sender, EventArgs e)
@@ -101,6 +104,14 @@ namespace Library_Management.Books
         private void ctrlShowBooksCatalogeWithFilter1_OnBtnBookClick(object sender, Controls.ctrlShowBooksCatalogeWithFilter.BtnBookClick e)
         {
             MessageBox.Show("Here Books form.", "Books", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void frmBooks_VisibleChanged(object sender, EventArgs e)
+        {
+            if (!this.Visible)
+                ctrlShowBooksCatalogeWithFilter1.ClearControls();
+            else
+                ctrlShowBooksCatalogeWithFilter1.LoadBookControls();
         }
     }
 }

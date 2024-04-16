@@ -122,6 +122,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Books";
             this.Shown += new System.EventHandler(this.frmBooks_Shown);
+            this.VisibleChanged += new System.EventHandler(this.frmBooks_VisibleChanged);
             this.ResumeLayout(false);
 
         }

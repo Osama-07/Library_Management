@@ -127,7 +127,7 @@
   <data name="btnReservations.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wAAADsABataJCQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAYxSURBVHhe7Ztb
+        vwAADr8BOAVTJAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAYxSURBVHhe7Ztb
         qFRVGMe9pKYVSWlZkkYRQaRdHwqN6iFRNIKkIisqCEu70EOFphJdsKKkKLKygu5mTxUl1kNXxZ4sKrKI
         BLWUoIth0b3V77sszx7P2nv2zDnTWQfmB/9zZv+/b+39zZw9s9f+Zp0hXbp06dKlBUIIY9AsdCd6Er08
         gHoM3Y5mo/28xM7AAcahe9HPKEd+R0+hY73k/oOdzkA70WDgT7QUDffy+wY7ugj9hfbmJnSopw0IHP9g
@@ -163,7 +163,7 @@
   <data name="btnCancelReservation.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAU8SURBVHhe7VtL
+        wAAADsABataJCQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAU8SURBVHhe7VtL
         iBxVFJ0YncQPgtEo4g/UhWBETYiCyODCT8aFiqLZBCV+IEgmimYzwaUK/qKS31L8gCEbDZpIRESiiB/I
         IhPd+P9lIZOIThK7X1XmeW6/M+nOe7dnuqo7815hHzhMT9/7zr3vVNWr7qrqAR+2Xr/KZtmr4D7wEGgT
         535wlO2Xh7V2ns3zzRA72iJeHeb5fZxKcTQmn2UfB6JVYp6/xukUBwZvUUWrxZc4nWLgMV/N3b7JcVur

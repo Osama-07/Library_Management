@@ -1,10 +1,12 @@
 ﻿using Guna.UI2.WinForms;
+using Library_Management.Global;
 using Library_Management.Properties;
 using LibraryBusiness;
 using System;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using Util;
 
@@ -17,11 +19,11 @@ namespace Library_Management.Books.Controls
         public enum enMode { AddNew = 1, Update = 2}
         public enMode Mode;
 
-
+        // this info for adding or updating in this page.
         public int BookID { get; set; }
         public clsBooks BookInfo { get; set; } = new clsBooks();
         private int _EditionsNo { get; set; }
-        private byte[] _Image { get; set; }
+        private string _Image { get; set; }
 
 
         public ctrlAddEditBook()
@@ -64,7 +66,7 @@ namespace Library_Management.Books.Controls
                     BookInfo.AdditinalDetails = null;
 
                 _EditionsNo = (int)row["EditionsNo"];
-                _Image = (byte[])row["Image"];
+                _Image = (string)row["Image"];
             }
         }
 
@@ -84,9 +86,9 @@ namespace Library_Management.Books.Controls
                 txtAdditinalDetails.Text = BookInfo.AdditinalDetails;
                 dtpPublication_Date.Value = BookInfo.Publication_Date;
                 nupNumberOfCopies.Value = _EditionsNo;
-                pbBookImage.Image = clsUtil.ByteArrayToImage(_Image);
+                pbBookImage.ImageLocation = _Image;
                 lblRemove.Visible = true;
-                pbBookImage.Tag = 1; // 1 =  meanse there are image in it.
+                //pbBookImage.Tag = 1; // 1 =  meanse there are image in it.
             }
         }
 
@@ -106,7 +108,7 @@ namespace Library_Management.Books.Controls
 
         private bool _CheckImage()
         {
-            if (Convert.ToInt16(pbBookImage.Tag) == 0)
+            if (pbBookImage.ImageLocation == null || pbBookImage.Image == Resources.No_Book)
             {
                 MessageBox.Show("you must be add the book image.", "Requaired", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return false;
@@ -115,6 +117,77 @@ namespace Library_Management.Books.Controls
             {
                 return true;
             }
+        }
+
+        bool _HandleBookImage()
+        {
+            if (Mode == enMode.AddNew)
+            {
+                if (pbBookImage.ImageLocation != null)
+                {
+                    string sourcefile = pbBookImage.ImageLocation;
+
+                    if (clsGlobal.Util.CopyImageToProjectImagesFolder(ref sourcefile))
+                    {
+                        pbBookImage.ImageLocation = sourcefile;
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error Copying Image File", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+
+                }
+                else
+                    return false;
+            }
+
+            if (Mode == enMode.Update)
+            {
+                // if the book image is changed, the old image will be deleted and new image will be added.
+                if (_Image != pbBookImage.ImageLocation)
+                {
+                    
+                    // if old image exists in folder images, will be deleted and save new image book.
+                    if (_Image != "")
+                    {
+                        //first we delete the old image from the folder in case there is any.
+                        try
+                        {
+                            clsGlobal.ImagesPathForDelete.Add(_Image);
+                        }
+                        catch (IOException iox)
+                        {
+                            // we could not delete image the fail.
+                            // log it later.
+                            MessageBox.Show(iox.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return false;
+                        }
+                    }
+
+
+                    // if the book image field is not wmpty, a new book image will be added.
+                    if (pbBookImage.ImageLocation != null)
+                    {
+                        string sourcefile = pbBookImage.ImageLocation;
+
+                        if (clsGlobal.Util.CopyImageToProjectImagesFolder(ref sourcefile))
+                        {
+                            pbBookImage.ImageLocation = sourcefile;
+                            return true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error Copying Image File", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return false;
+                        }
+                    }
+                }
+            }
+
+
+            return true;
         }
 
         private bool _IsDataEnteredCorrect()
@@ -144,7 +217,7 @@ namespace Library_Management.Books.Controls
 
             _EditionsNo = Convert.ToInt32(nupNumberOfCopies.Value);
             string ControlName = "btnBook";
-            _Image = clsUtil.ImageToByteArray(pbBookImage.Image);
+            _Image = pbBookImage.ImageLocation;
 
             return Book.AddNewBookWithCopiesAndControl(_EditionsNo, ControlName, _Image);
         }
@@ -161,15 +234,18 @@ namespace Library_Management.Books.Controls
 
             _EditionsNo = Convert.ToInt32(nupNumberOfCopies.Value);
             string ControlName = "btnBookID" + BookID;
-            
-            if (pbBookImage.ImageLocation != null && clsUtil.ByteArrayToImage(_Image) != pbBookImage.Image)
-                _Image = clsUtil.ImageToByteArray(pbBookImage.Image);
+
+            if (pbBookImage.ImageLocation != null && _Image != pbBookImage.ImageLocation)
+                _Image = pbBookImage.ImageLocation;
 
             return BookInfo.UpdateBookWithCopiesAndControl(_EditionsNo, ControlName, _Image);
         }
 
-        private bool Save()
+        private bool _Save()
         {
+            if (!_HandleBookImage())
+                return false;
+
             if (Mode == enMode.AddNew)
             {
                 if (_AddNewBook())
@@ -187,7 +263,8 @@ namespace Library_Management.Books.Controls
                     MessageBox.Show("Updated Book Successfully.", "Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return true;
                 }
-                return false;
+                else
+                    return false;
             }
         }
 
@@ -202,8 +279,9 @@ namespace Library_Management.Books.Controls
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 pbBookImage.ImageLocation = openFileDialog1.FileName;
+                //_Image = openFileDialog1.FileName;
                 lblRemove.Visible = true;
-                pbBookImage.Tag = 1;  // 1 =  meanse there are image in it.
+                //pbBookImage.Tag = 1;  // 1 =  meanse there are image in it.
             }
 
         }
@@ -213,7 +291,7 @@ namespace Library_Management.Books.Controls
             pbBookImage.ImageLocation = null;
             pbBookImage.Image = Resources.No_Book;
             lblRemove.Visible = false;
-            pbBookImage.Tag = 0;  //  =  meanse there are not image in it.
+            //pbBookImage.Tag = 0;  //  =  meanse there are not image in it.
         }
 
         private void txtBookID_TextChanged(object sender, EventArgs e)
@@ -247,7 +325,7 @@ namespace Library_Management.Books.Controls
                 return;
             }
 
-            if (Save())
+            if (_Save())
             {
                 OnSaveed?.Invoke();
             }

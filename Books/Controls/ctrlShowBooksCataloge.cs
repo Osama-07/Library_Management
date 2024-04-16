@@ -1,8 +1,10 @@
 ﻿using Guna.UI2.WinForms;
+using Library_Management.Global;
 using LibraryBusiness;
 using System;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Net;
 using System.Windows.Forms;
 using Util;
@@ -55,8 +57,7 @@ namespace Library_Management.Books.Controls
             OnBtnBookClick?.Invoke(this, e);
         }
 
-
-        public void Reset()
+        public void Referesh()
         {
             dtBookControls = clsBookControls.GetAllBookControls();
             dvBookControls = dtBookControls.DefaultView;
@@ -93,7 +94,7 @@ namespace Library_Management.Books.Controls
 
             // Image.
             bookButton.ImageSize = new Size(90, 90);
-            bookButton.Image = clsUtil.ByteArrayToImage((byte[])row["Image"]);
+            bookButton.Image = Image.FromFile((string)row["Image"]);
         }
 
         private void AdjustButtonPositions()
@@ -139,9 +140,13 @@ namespace Library_Management.Books.Controls
                 panelBooks.Controls.Add(bookButton);
                 AdjustButtonPositions();
             }
-
+            //Referesh();
         }
 
+        public void ClearControls()
+        {
+            panelBooks.Controls.Clear();
+        }
 
     }
 }

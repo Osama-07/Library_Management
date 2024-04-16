@@ -1,8 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 using Library_Management.Books;
 using Library_Management.Borrowing_Records;
 using Library_Management.Fines;
+using Library_Management.Global;
 using Library_Management.Home;
 using Library_Management.Profile;
 using Library_Management.Properties;
@@ -32,6 +34,9 @@ namespace Library_Management
         public frmMainMenue()
         {
             InitializeComponent();
+
+            // this for delete old image book if changed.
+            Application.ApplicationExit += (s, e) => clsGlobal.DeleteImagesChanged();
 
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
         }
@@ -119,6 +124,7 @@ namespace Library_Management
             {
                 if (activeSubForm != null)
                 {
+                    //activeForm.Close();
                     activeSubForm.Close();
                 }
 
@@ -156,6 +162,7 @@ namespace Library_Management
 
                 OpenChailedForm(Forms.frmHome, enImageTitle.Home);
             }
+
         }
 
         private void btnBooks_Click(object sender, EventArgs e)
@@ -247,5 +254,9 @@ namespace Library_Management
             this.Close();
         }
 
+        private void frmMainMenue_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+        }
     }
 }

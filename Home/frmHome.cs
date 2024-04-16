@@ -29,5 +29,13 @@ namespace Library_Management.Home
             MessageBox.Show("Here Home Form.", "Home", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
+
+        private void frmHome_VisibleChanged(object sender, EventArgs e)
+        {
+            if (!this.Visible)
+                ctrlShowBooksCatalogeWithFilter1.ClearControls();
+            else
+                ctrlShowBooksCatalogeWithFilter1.LoadBookControls();
+        }
     }
 }

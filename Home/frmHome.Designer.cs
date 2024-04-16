@@ -54,6 +54,7 @@ namespace Library_Management.Home
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home";
             this.Shown += new System.EventHandler(this.frmHome_Shown);
+            this.VisibleChanged += new System.EventHandler(this.frmHome_VisibleChanged);
             this.ResumeLayout(false);
 
         }

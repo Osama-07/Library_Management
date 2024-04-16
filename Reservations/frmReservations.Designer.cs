@@ -101,6 +101,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reservations";
             this.Shown += new System.EventHandler(this.frmReservations_Shown);
+            this.VisibleChanged += new System.EventHandler(this.frmReservations_VisibleChanged);
             this.ResumeLayout(false);
 
         }

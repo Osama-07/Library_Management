@@ -3,6 +3,9 @@ using System.Reflection;
 using System.Configuration;
 using Util;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Windows.Forms;
 
 namespace Library_Management.Global
 {
@@ -10,9 +13,9 @@ namespace Library_Management.Global
     {
         private static string _SourceName = Assembly.GetExecutingAssembly().GetName().Name;
         private static string _Location = Assembly.GetExecutingAssembly().Location; // 
-        private static string _DestinationFolder = @"G:\Library_Management_Images\"; // folder for save books images.
+        private static string _DestinationFolder = @"D:\Library_Management_Images\"; // folder for save books images.
 
-        public clsUtil Util = new clsUtil(_SourceName, _Location, _DestinationFolder);
+        public static clsUtil Util = new clsUtil(_SourceName, _Location, _DestinationFolder);
 
         private static string _SenderEmail = ConfigurationManager.AppSettings["SenderEmail"];
         private static string _AppPass = ConfigurationManager.AppSettings["AppPass"];
@@ -216,5 +219,23 @@ namespace Library_Management.Global
             return true;
         }
 
+
+        // this for store path of images changed, and delete them when close the program.
+        public static List<string> ImagesPathForDelete = new List<string>();
+        public static void DeleteImagesChanged()
+        {
+            try
+            {
+                foreach (string Image in ImagesPathForDelete)
+                {
+                    File.Delete(Image);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+            }
+        }
     }
 }

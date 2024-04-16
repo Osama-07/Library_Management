@@ -36,6 +36,8 @@
     <ApplicationIcon>Osama-logo-_500-x-500-بيكسل__1.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="ctrlLoginInfo">
       <HintPath>..\..\Controls Library\ctrlLoginInfo\bin\Debug\ctrlLoginInfo.dll</HintPath>

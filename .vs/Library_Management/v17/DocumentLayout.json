@@ -1,12 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\TOSHIBA\\Desktop\\Osama Projects\\P2_Library Management\\Library_Management\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{C69A707F-8F03-4F78-82A8-140727CE45CB}|Library_Management.csproj|c:\\users\\toshiba\\desktop\\osama projects\\p2_library management\\library_management\\setting\\frmsetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C69A707F-8F03-4F78-82A8-140727CE45CB}|Library_Management.csproj|solutionrelative:setting\\frmsetting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
@@ -14,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 261,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -35,18 +30,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "frmSetting.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\TOSHIBA\\Desktop\\Osama Projects\\P2_Library Management\\Library_Management\\Setting\\frmSetting.cs",
-              "RelativeDocumentMoniker": "Setting\\frmSetting.cs",
-              "ToolTip": "C:\\Users\\TOSHIBA\\Desktop\\Osama Projects\\P2_Library Management\\Library_Management\\Setting\\frmSetting.cs [Design]",
-              "RelativeToolTip": "Setting\\frmSetting.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-08T19:27:32.194Z",
-              "EditorCaption": " [Design]"
             }
           ]
         },
