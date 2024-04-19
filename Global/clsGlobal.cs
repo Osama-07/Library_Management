@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using System.Threading.Tasks;
 
 namespace Library_Management.Global
 {
@@ -222,13 +223,13 @@ namespace Library_Management.Global
 
         // this for store path of images changed, and delete them when close the program.
         public static List<string> ImagesPathForDelete = new List<string>();
-        public static void DeleteImagesChanged()
+        public static async void DeleteImagesChanged()
         {
             try
             {
                 foreach (string Image in ImagesPathForDelete)
                 {
-                    File.Delete(Image);
+                    await Task.Run(() => File.Delete(Image));
                 }
 
             }

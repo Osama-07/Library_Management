@@ -151,6 +151,18 @@
     <Compile Include="Login\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Setting\frmServicePrices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setting\frmServicePrices.Designer.cs">
+      <DependentUpon>frmServicePrices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\frmStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setting\frmStock.Designer.cs">
+      <DependentUpon>frmStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="Users\Controls\ctrlGetUserInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -253,6 +265,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setting\frmServicePrices.resx">
+      <DependentUpon>frmServicePrices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setting\frmStock.resx">
+      <DependentUpon>frmStock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Users\Controls\ctrlGetUserInfo.resx">
       <DependentUpon>ctrlGetUserInfo.cs</DependentUpon>

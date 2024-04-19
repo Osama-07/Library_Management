@@ -41,3 +41,5 @@ C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management
 C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.Users.frmSelectUser.resources
 C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.Fines.frmFines.resources
 C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.Users.frmEmailVerification.resources
+C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.Setting.frmServicePrices.resources
+C:\Users\TOSHIBA\Desktop\Osama Projects\P2_Library Management\Library_Management\obj\Debug\Library_Management.Setting.frmStock.resources
