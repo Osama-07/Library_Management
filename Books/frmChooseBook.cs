@@ -30,7 +30,13 @@ namespace Library_Management.Books
                 cmbBooks.Items.Add(item["Title"]);
             }
 
-            cmbBooks.SelectedIndex = 0;
+            if (cmbBooks.Items.Count > 0)
+                cmbBooks.SelectedIndex = 0;
+            else
+            {
+                MessageBox.Show("You don't have borrowed books.", "Go to borrow book", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                this.Close();
+            }
         }
 
         private Nullable<int> _GetBookID()

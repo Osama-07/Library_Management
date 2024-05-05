@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Library_Management.Global;
 using LibraryBusiness;
 
 namespace Library_Management.Books
@@ -65,7 +66,7 @@ namespace Library_Management.Books
 
         private void frmBooks_Shown(object sender, EventArgs e)
         {
-            ctrlShowBooksCatalogeWithFilter1.LoadBookControls();
+            ctrlShowBooksCatalogeWithFilter1.Reset();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -89,8 +90,12 @@ namespace Library_Management.Books
             {
                 if (clsBooks.IsExist(BookID))
                 {
+                    string ImagePath = clsBookControls.FindBookControlByBook_ID(BookID).Image;
+
                     if (clsBooks.DeleteBookWithCopiesAndControl(BookID))
                     {
+                        // store image path for delete image form hardisk.
+                        clsGlobal.ImagesPathForDelete.Add(ImagePath);
                         MessageBox.Show($"Deleted book with ID {BookID} Successfully.", "Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Referesh();
                     }

@@ -41,7 +41,7 @@ namespace Library_Management.Borrowing_Records
         {
             int UserID = Convert.ToInt32(txtUserID.Text);
 
-            if (!string.IsNullOrEmpty(txtUserID.Text) && UserID > 1)
+            if (!string.IsNullOrEmpty(txtUserID.Text) && UserID > 0)
             {
                 if (clsUsers.IsExist(UserID))
                 {
@@ -81,6 +81,7 @@ namespace Library_Management.Borrowing_Records
 
         private void btnBack_Click(object sender, EventArgs e)
         {
+            _frmBorrowingRecords.Referesh();
             _frmBorrowingRecords.Show();
 
             this.Close();
@@ -107,16 +108,17 @@ namespace Library_Management.Borrowing_Records
             if (_Save())
             {
                 btnSave.Enabled = false;
-                // Send borrow book has been complete email to user.
-                await Task.Run(() =>
-                {
-                    int UserID = Convert.ToInt32(txtUserID.Text);
-                    clsGlobal.SendBorrowConfirmationEmail(UserID, _BookID);
-                });
-
+                int UserID = Convert.ToInt32(txtUserID.Text);
+                
                 MessageBox.Show($"The book has been borrowed successfully.", "Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 btnBack.PerformClick();
+
+                // Send borrow book has been complete email to user.
+                await Task.Run(() =>
+                {
+                    clsGlobal.SendBorrowConfirmationEmail(UserID, _BookID);
+                });
             }
             else
                 MessageBox.Show($"Sorry, cannot will be borrow this book.", "Stop", MessageBoxButtons.OK, MessageBoxIcon.Stop);

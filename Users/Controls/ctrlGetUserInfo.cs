@@ -68,7 +68,7 @@ namespace Library_Management.Users.Controls
             {
                 clsUsers User = clsUsers.FindByUser_ID(UserID);
 
-                if (User != null && UserID != 1)
+                if (User != null && UserID > 0)
                 {
                     User_ID = UserID;
 

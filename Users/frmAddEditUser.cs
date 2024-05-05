@@ -173,7 +173,6 @@ namespace Library_Management.Users
                 if (User.Save())
                 {
                     _UserID = User.User_ID ?? 0; // if the User ID is null instead it as 0.
-                    MessageBox.Show($"Added User Successfully.\n\nUser ID is: {_UserID}", "Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return true;
                 }
                 else
@@ -191,7 +190,6 @@ namespace Library_Management.Users
 
                 if (User.Save())
                 {
-                    MessageBox.Show($"Updated User Successfully.", "Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return true;
                 }
                 else
@@ -218,6 +216,15 @@ namespace Library_Management.Users
 
             if (_Save())
             {
+                btnSave.Enabled = false;
+
+                if (_Mode == enMode.AddNew)
+                    MessageBox.Show($"Added User Successfully.\n\nUser ID is: {_UserID}", "Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show($"Updated User Successfully.", "Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                btnBack.PerformClick();
+
                 await Task.Run(() => 
                 {
                     if (_Mode == enMode.AddNew)
@@ -225,7 +232,7 @@ namespace Library_Management.Users
                     else
                         clsGlobal.SendProfileUpdateConfirmationEmail(_UserID);
                 });
-                btnBack.PerformClick();
+
             }
             else
                 MessageBox.Show($"Add User is failed, Try again later.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);

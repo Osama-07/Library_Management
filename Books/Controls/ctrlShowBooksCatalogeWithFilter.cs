@@ -100,21 +100,22 @@ namespace Library_Management.Books.Controls
                         if (int.TryParse(txtSearch.Text, out int ID))
                         {
                             ctrlShowBooksCataloge1.dvBookControls.RowFilter = $"Book_ID = {ID}";
-                            ctrlShowBooksCataloge1.LoadBookControls();
+                            if (ctrlShowBooksCataloge1.CountControls > 0)
+                            {
+                                ctrlShowBooksCataloge1.LoadBookControls(); // if has record will show it.
+                            }
                         }
 
                     }
                     break;
                 case "Book Name":
                     {
-                        string FilterExpression = $"[Title] = '{txtSearch.Text}'";
+                        string FilterExpression = string.Format("{0} LIKE '{1}%'", "[Title]", txtSearch.Text);
                         ctrlShowBooksCataloge1.dvBookControls.RowFilter = FilterExpression;
-                        if (ctrlShowBooksCataloge1.dvBookControls.Count > 0)
+                        if (ctrlShowBooksCataloge1.CountControls > 0)
                         {
                             ctrlShowBooksCataloge1.LoadBookControls(); // if has record will show it.
                         }
-                        else
-                            MessageBox.Show($"Book With Name {txtSearch.Text} is Not found.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     }
                     break;
             }
@@ -122,7 +123,7 @@ namespace Library_Management.Books.Controls
 
         public void LoadBookControls()
         {
-            ctrlShowBooksCataloge1.Referesh();
+            ctrlShowBooksCataloge1.LoadBookControls();
             cmbFilter.SelectedIndex = 0;
         }
 
@@ -139,7 +140,9 @@ namespace Library_Management.Books.Controls
                 ctrlShowBooksCataloge1.Referesh();
                 return;
             }
-            _Search();
+
+            btnSearch.PerformClick();
+            txtSearch.Focus();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -149,7 +152,8 @@ namespace Library_Management.Books.Controls
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            _Search();
+            if (ctrlShowBooksCataloge1.CountControls > 0)
+                _Search();
         }
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)

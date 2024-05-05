@@ -227,16 +227,25 @@ namespace Library_Management.Global
         {
             try
             {
-                foreach (string Image in ImagesPathForDelete)
+
+                var deleteTasks = new List<Task>();
+                foreach (string imagePath in ImagesPathForDelete)
                 {
-                    await Task.Run(() => File.Delete(Image));
+                    deleteTasks.Add(Task.Run(() => File.Delete(imagePath)));
                 }
 
+                await Task.WhenAll(deleteTasks);
+
+                await Task.Delay(5000);
+
+                Application.Exit();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
             }
         }
+
+
     }
 }

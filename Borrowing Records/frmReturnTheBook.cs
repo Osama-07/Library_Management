@@ -66,6 +66,7 @@ namespace Library_Management.Borrowing_Records
         private void btnBack_Click(object sender, EventArgs e)
         {
             _frmBorrowingRecords.Show();
+            _frmBorrowingRecords.Referesh();
 
             this.Close();
         }
@@ -86,28 +87,31 @@ namespace Library_Management.Borrowing_Records
                 int? fineID = _ReturnTheBook();
                 if (fineID == null || fineID == 0) // null or 0 means the user has no fines.
                 {
+                    MessageBox.Show("The book was returned successfully.", "Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    btnBack.PerformClick();
+
                     await Task.Run(() =>
                     {
                         clsGlobal.SendReturnConfirmationEmail(_UserID, _BookID);
                     });
-
-                    MessageBox.Show("The book was returned successfully.", "Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
+                    MessageBox.Show($"The user is late in returning the book, and a late fine is imposed on him with Fine ID {fineID}.\n\nGo to the fines screen to see the fine details.",
+                        "Warning", MessageBoxButtons.OK, MessageBoxIcon.None);
+                    MessageBox.Show("The book was returned successfully.", "Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    btnBack.PerformClick();
+
                     // Notifying the user of the fine.
                     await Task.Run(() =>
                     { 
                         clsGlobal.SendFineEmail(_UserID, (int)fineID);
                     });
 
-                    MessageBox.Show($"The user is late in returning the book, and a late fine is imposed on him with Fine ID {fineID}.\n\nGo to the fines screen to see the fine details.",
-                        "Warning", MessageBoxButtons.OK, MessageBoxIcon.None);
-                    MessageBox.Show("The book was returned successfully.", "Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-
-            btnBack.PerformClick();
         }
 
         private void frmReturnTheBook_Shown(object sender, EventArgs e)

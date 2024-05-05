@@ -1,26 +1,22 @@
 ﻿using Guna.UI2.WinForms;
-using Library_Management.Global;
 using LibraryBusiness;
 using System;
 using System.Data;
 using System.Drawing;
-using System.IO;
-using System.Net;
 using System.Windows.Forms;
-using Util;
 
 namespace Library_Management.Books.Controls
 {
     public partial class ctrlShowBooksCataloge : UserControl
     {
-        public static DataTable dtBookControls = new DataTable();
-        public DataView dvBookControls = new DataView(dtBookControls);
+        private static DataTable _dtBookControls = new DataTable();
+        public DataView dvBookControls = new DataView(_dtBookControls);
 
         public int CountControls
         {
             get
             {
-                return panelBooks.Controls.Count;
+                return _dtBookControls.Rows.Count;
             }
         }
 
@@ -59,8 +55,8 @@ namespace Library_Management.Books.Controls
 
         public void Referesh()
         {
-            dtBookControls = clsBookControls.GetAllBookControls();
-            dvBookControls = dtBookControls.DefaultView;
+            _dtBookControls = clsBookControls.GetAllBookControls();
+            dvBookControls = _dtBookControls.DefaultView;
 
             panelBooks.Controls.Clear();
             foreach (DataRowView row in dvBookControls)
